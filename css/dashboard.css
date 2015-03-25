@@ -1,0 +1,135 @@
+ @import 'http://fonts.googleapis.com/css?family=Montserrat:300,400,700';
+
+body {
+	margin: 0px;
+	font-family: Montserrat, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	color: #444;
+	background: #fff;  
+	overflow-x: hidden;
+}
+
+h1 {
+	font-weight: normal;
+	letter-spacing: -1px;
+	color: #34495E;
+}
+
+#jobsDiv{
+	display: block;	
+	padding: 0 2em;	
+	padding-top: 30px;
+}
+
+.jobs-table {
+	background: #34495E;
+	color: #fff;  
+	overflow: hidden;  
+	width: 100%;
+	border-collapse: collapse;  
+}
+
+table, th, td {
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;   
+}
+
+td {
+	padding-left: 10px;
+	padding-right: 0px;
+}
+
+th {
+	padding-left: 10px;
+	background-color: #31bc86;
+	font-weight: bold;
+	color: #fff;
+	white-space: nowrap;
+	text-align: left;
+}
+
+tr {
+	height: 50px;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;   
+}
+
+.header-wrapper {
+	position: relative;
+	height: 65px;	
+	z-index: 15;
+	font-size: 15px;
+	text-transform: uppercase;	
+	background: black;	
+	background: rgba(26, 26, 26, 0.5);
+	transition:background 0.5s ease ;
+	-webkit-transition:background 0.5s ease ;
+	top: 0;
+	left: 0;
+}
+
+.nav { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; list-style: none;}
+
+a {
+	outline: none;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all .25s ease-in-out;
+	-moz-transition: all .25s ease-in-out;
+	-webkit-transition: all .25s ease-in-out;
+	color: #DCA459;
+	outline: 0;
+}
+
+ul {
+	display: block;
+	list-style-type: disc;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 40px;
+}
+.header {
+	margin: 0 auto;
+	width: 2000px;
+	overflow: hidden;
+	height: 65px;
+}
+.header a.logo {
+	float: left;
+	margin: 16px 0 0 0;
+	width: 230px;
+}
+.header ul {
+	float: right;
+	position: absolute;
+	right: 0;
+}
+.header ul li {
+	float: left;
+	display: block;
+	font-family: Montserrat, sans-serif;
+	font-size: 20px;
+}
+.header ul li:first-child {
+	margin: 0
+}
+.header ul li a {
+	color: #FFF;
+	height: 45px;
+	display: block;
+	padding: 20px 20px 0 ;
+}
+.header ul li a:hover {
+	color: #FFF;
+	background: #DCA459;
+}
+
+#competencyAnalysisLink {
+	font-size: 22px;
+	padding: 10px;
+	float:right;
+	text-decoration: underline;
+}
