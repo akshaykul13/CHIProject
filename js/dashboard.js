@@ -71,8 +71,12 @@ $(document).ready(function(){
 				for( var i=0; i<data.length; i++) //Object obj in data)
 				{
 					var obj = data[i];
-					
-					$('#joblist tr:last').after('<tr><td>'+obj.created_at+'</td><td>'+obj.company+'</td><td>'+obj.title+'</td><td>'+obj.location+'</td><td><a>Link</a></td></tr>');
+					var time2 = obj.created_at.replace(" UTC","");
+					time2 = time2.substring(4);
+					var clock = time2.substring(7,15);
+					var year = time2.substring(time2.length-4);
+					time2 = time2.substring(0,6)+" "+year+" "+clock;
+					$('#joblist tr:last').after('<tr><td>'+time2+'</td><td>'+obj.company+'</td><td>'+obj.title+'</td><td>'+obj.location+'</td><td><a>Link</a></td></tr>');
 					console.log(data[i]);
 					console.log(obj.created_at.type);
 				}
