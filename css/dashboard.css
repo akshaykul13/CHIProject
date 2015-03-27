@@ -133,3 +133,9 @@ ul {
 	float:right;
 	text-decoration: underline;
 }
+
+#joblist div.arrow { background:transparent url(../images/arrows.png) no-repeat scroll 0px -16px; width:16px; height:16px; display:block;}
+
+.tableRowInfo {
+	background-color: gray;
+}

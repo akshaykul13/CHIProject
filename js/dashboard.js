@@ -76,10 +76,17 @@ $(document).ready(function(){
 					var clock = time2.substring(7,15);
 					var year = time2.substring(time2.length-4);
 					time2 = time2.substring(0,6)+" "+year+" "+clock;
-					$('#joblist tr:last').after('<tr><td>'+time2+'</td><td>'+obj.company+'</td><td>'+obj.title+'</td><td>'+obj.location+'</td><td><a>Link</a></td></tr>');
-					console.log(data[i]);
-					console.log(obj.created_at.type);
+					$('#joblist tbody').append('<tr><td>'+time2+'</td><td>'+obj.company+'</td><td>'+obj.title+'</td><td>'+obj.location+'</td><td><a>Link</a></td><td><div class="arrow"></div></td></tr><tr class="tableRowInfo"><td colspan="6"><div style="width:100%;"><img src="'+obj.company_logo+'"alt="Company Logo" height="60" style="padding-top:10px;"/><a href="'+obj.company_url+'" style="padding-left:5em;text-decoration:underline;">Company URL</a><a href="'+obj.url+'" style="padding-left:5em;text-decoration:underline;">Job URL</a><h4>Job Description</h4>'+obj.description+'How to apply: 	'+obj.how_to_apply+'</div></td></tr>');
+					//console.log(data[i]);
+					//console.log(obj.created_at.type);
 				}
+				$("tbody tr:even").addClass("even");								
+				$("tbody tr:not(.even)").hide();
+				$("tbody tr:first-child").show();				
+				$("tbody tr.even").click(function(){
+					$(this).next("tr").toggle();
+					$(this).find(".arrow").toggleClass("up");
+				});
 			}
 		});
 	}
