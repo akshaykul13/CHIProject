@@ -1,0 +1,22 @@
+body {
+	margin: 0px;
+	font-family: Montserrat, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	color: #444;
+	background: #fff;  
+	overflow-x: hidden;
+}
+
+#alumnidiv {
+	margin: 5px;
+	display: block;	
+	padding: 0 2em;	
+	padding-top: 30px;
+}
+
+.alumni-table {
+	overflow: hidden;  
+	width: 100%;
+	border-collapse: collapse;  
+}
