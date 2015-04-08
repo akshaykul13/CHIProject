@@ -30,5 +30,10 @@ $(document).ready(function(){
 		$('#constraints').html('<p>' + object.constraints + '</p>');
 		$('#outputFormat').html('<p>' + object.output_format + '</p>');
 		$('#questionHolder').show();
+		var myCodeMirror = CodeMirror(document.getElementById('codeMirrorHolder'), {
+		  value: "function myScript(){return 100;}\n",
+		  mode:  "javascript",
+		  lineWrapping: true, lineNumbers: true
+		});
 	}
 });
