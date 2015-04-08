@@ -1,4 +1,9 @@
 $(document).ready(function(){
+	
+	var fetchedQuestions;
+	//Global Functionality
+	$('#questionHolder').hide();
+	
     $('#submit').click(function(){
         console.log('click');
         var major = $('#major').val();
@@ -8,12 +13,22 @@ $(document).ready(function(){
         $.ajax({
             type : 'GET',
             url : 'php/question.php',
+			dataType: "json",
 			success: function(data) {							
 				console.log(data);
-                $.each( data, function( key, value ) {
-                    $('#statement').append(value);
-                });
+				fetchedQuestions = data;
+				populateQuestionHolder(data[0]);				
             } 
         });              
-    }); 
+    });
+	
+	function populateQuestionHolder(object){
+		console.log(object.title);		
+		$('#problemTitle').html('<p>' + object.title + '</p>');				
+		$('#question').html('<p>' + object.question + '</p>');
+		$('#inputFormat').html('<p>' + object.input_format + '</p>');
+		$('#constraints').html('<p>' + object.constraints + '</p>');
+		$('#outputFormat').html('<p>' + object.output_format + '</p>');
+		$('#questionHolder').show();
+	}
 });

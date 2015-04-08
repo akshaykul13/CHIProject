@@ -4,7 +4,7 @@ require 'connect.php';
     $company = "Google";
     $domain = "math";
     $field = "geometry";
-    $query = "SELECT title from question_bank WHERE companyID = 'Google' ";
+    $query = "SELECT * from question_bank WHERE companyID = 'Google' ";
 	$query_run = mysqli_query($link, $query);
 	$returnArray =[];
 	if($query_run){

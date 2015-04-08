@@ -9,8 +9,5 @@ $link = mysqli_connect($mysql_host, $mysql_user, $mysql_pass, $mysql_db) or die(
 if ($link->connect_errno) {
     echo $link->connect_error;
     exit();
-}else {
-	echo "Success";
 }
 ?>
-$_SESSION["favcolor"] = "yellow";
