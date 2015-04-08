@@ -58,7 +58,7 @@ $(document).ready(function(){
 		$.ajax({
 			type: 'GET',
 			dataType: 'jsonp',
-			data: { description: 'python', location: 'New York'},
+			data: { description: 'Maps Software Engineer - Tools', location: 'San Fransisco'},
 			url: 'http://jobs.github.com/positions.json?',
 			beforeSend: function(){				
 				ajaxindicatorstart('Loading Data.. Please Wait..');
