@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+	$(".chosen-select-deselect").chosen()
 	function ajaxindicatorstart(text){
 		if(jQuery('body').find('#resultLoading').attr('id') != 'resultLoading'){
 		jQuery('body').append('<div id="resultLoading" style="display:none"><div><img src="images/ajax-loader.gif"><div>'+text+'</div></div><div class="bg"></div></div>');
@@ -58,7 +58,7 @@ $(document).ready(function(){
 		$.ajax({
 			type: 'GET',
 			dataType: 'jsonp',
-			data: { description: 'Maps Software Engineer - Tools', location: 'San Fransisco'},
+			data: { description: 'Apple', location: 'San Fransisco'},
 			url: 'http://jobs.github.com/positions.json?',
 			beforeSend: function(){				
 				ajaxindicatorstart('Loading Data.. Please Wait..');
@@ -100,5 +100,5 @@ $(document).ready(function(){
 				window.location.replace("login.html");				
 			}
 		});
-	});
+	});		
 });

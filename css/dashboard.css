@@ -139,3 +139,7 @@ ul {
 .tableRowInfo {
 	background-color: gray;
 }
+
+#dialog-form {
+	background: rgba(255,255,255,1);
+}
