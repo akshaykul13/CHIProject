@@ -58,7 +58,7 @@ $(document).ready(function(){
 		$.ajax({
 			type: 'GET',
 			dataType: 'jsonp',
-			data: { description: 'Apple', location: 'San Fransisco'},
+			data: {location: 'San Fransisco'},
 			url: 'http://jobs.github.com/positions.json?',
 			beforeSend: function(){				
 				ajaxindicatorstart('Loading Data.. Please Wait..');
@@ -88,7 +88,7 @@ $(document).ready(function(){
 					$(this).find(".arrow").toggleClass("up");
 				});
 			}
-		});
+		});				
 	}
 	
 	$("#logout_link").click(function(){
@@ -101,4 +101,33 @@ $(document).ready(function(){
 			}
 		});
 	});		
+	var config = {
+			  '.chosen-select'           : {},
+			  '.chosen-select-deselect'  : {allow_single_deselect:true},
+			  '.chosen-select-no-single' : {disable_search_threshold:10},
+			  '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+			  '.chosen-select-width'     : {width:"95%"}
+	}
+			
+	//"document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block
+	$('#preferences_link').click(function(){
+		$('#light').css('display', 'block');
+		$('#fade').css('display', 'block');				
+		for (var selector in config) {
+			$(selector).chosen(config[selector]);
+		}
+		$.ajax({
+			type: 'GET',						
+			url: 'php/fetchpreferences.php',			
+			success: function(JSONObject) {			
+				console.log(JSONObject);
+				console.log(JSON.parse(JSONObject));
+				var object = JSON.parse(JSONObject);
+				console.log(object.location);				
+				$('#display_location').html(object.location);
+				$('#display_company').html(object.company);
+				$('#display_keywords').html(object.keywords);
+			}
+		});		
+	});
 });

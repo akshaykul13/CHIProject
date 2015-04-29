@@ -9,18 +9,19 @@
 		<link rel="stylesheet" href="css/chosen.css">
   
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>			
+		<script src="js/preferences.js" type="text/javascript"></script>
 		<script src="js/chosen.jquery.min.js" type="text/javascript"></script>
 		<script src="js/prism.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>	
-		<h2><a name="allow-deselect-on-single-selects" class="anchor" href="#allow-deselect-on-single-selects">Please select your preferences</a></h2>
-
+		<h3><a name="allow-deselect-on-single-selects" class="anchor" href="#allow-deselect-on-single-selects">Please select to change your preferences</a></h3>			
+		
         <div class="side-by-side clearfix">
-          <select data-placeholder="Select your preferred Location" style="width:350px;" class="chosen-select-deselect" tabindex="12">
+          <select data-placeholder="Select your preferred Location" style="width:350px;" class="chosen-select-deselect" tabindex="12" id="location_preference">
             <option value=""></option>
 			<optgroup label="California">
 				<option>San Jose</option>
-				<option selected>San Francisco</option>
+				<option>San Francisco</option>
 				<option>Cupertino</option>
 			</optgroup>
             <option>Giant Panda</option>
@@ -32,7 +33,7 @@
         </div>
 		
 		<div class="side-by-side clearfix">
-          <select data-placeholder="Select your preferred company" style="width:350px;" class="chosen-select-deselect" tabindex="12">
+          <select data-placeholder="Select your preferred company" style="width:350px;" class="chosen-select-deselect" tabindex="12" id="company_preference">
             <option value=""></option>			
 			<option>Apple</option>
 			<option>Github</option>
@@ -46,18 +47,19 @@
         </div>
 		
 		 <div class="side-by-side clearfix">          
-          <select data-placeholder="Your Favorite Types of Bear" style="width:350px;" multiple class="chosen-select" tabindex="14">
+          <select data-placeholder="Your Favorite Types of Bear" style="width:350px;" multiple class="chosen-select" tabindex="14" id="keyword_preferences">
             <option value=""></option>
             <option>American Black Bear</option>
             <option>Asiatic Black Bear</option>
             <option>Brown Bear</option>
             <option>Giant Panda</option>
-            <option selected>Sloth Bear</option>
-            <option selected>Polar Bear</option>
+            <option>Sloth Bear</option>
+            <option>Polar Bear</option>
           </select>
         </div>
 		
 		<input type="button" id="save_preferences" value="Save"></input>
+		
 		<script type="text/javascript">
 			var config = {
 			  '.chosen-select'           : {},
