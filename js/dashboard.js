@@ -90,4 +90,15 @@ $(document).ready(function(){
 			}
 		});
 	}
+	
+	$("#logout_link").click(function(){
+		$.ajax({
+			type: 'GET',						
+			url: 'php/logout.php',			
+			success: function(JSONObject) {			
+				console.log(JSONObject);					
+				window.location.replace("login.html");				
+			}
+		});
+	});
 });
