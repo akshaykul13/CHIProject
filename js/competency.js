@@ -26,6 +26,12 @@ $(document).ready(function(){
 									],
 				"correct"		: 	"Thomas Jefferson",
 				"explanation"	: 	"The two dollar bill is seldom seen in circulation. As a result, some businesses are confused when presented with the note.",
+			},
+			{
+				"question_type" :   "coding",
+				"question"		: 	"Print all numbers which do not begin with 42.",
+				"input"			: 	"456%0D%0A423",
+				"correct"		: 	"456",				
 			}];
 	
 	window.onload = function (){
@@ -33,18 +39,23 @@ $(document).ready(function(){
 		$('#questionNumber').hide();
 		$('#questionText').hide();
 		$('#next_link').hide();
+		$('#codingQuestionHolder').hide();
 		$('#progress_bar').css("width", "0%");
 	}
 	
 	$("#start_button").click(function(){
 		$('#infoArea').hide();
+		$('#next_link').show();
 		$('#questionNumber').show();
-		$('#questionText').show();
-		$('#next_link').show();	
+		
 		var current_question = questions[questionCounter];		
 		if(current_question.question_type == MCQ){
-			populateMCQ(current_question);			
+			$('#questionText').show();		
+			$('#codingQuestionHolder').hide();
+			populateMCQ(current_question);						
 		}else{
+			$('#questionText').hide();		
+			$('#codingQuestionHolder').show();
 			populateCoding(current_question);
 		}
 		questionCounter++;
@@ -53,12 +64,30 @@ $(document).ready(function(){
 	$('#next_link').click(function(){
 		var current_question = questions[questionCounter];		
 		if(current_question.question_type == MCQ){
+			$('#questionText').show();		
+			$('#codingQuestionHolder').hide();
 			populateMCQ(current_question);
 		}else{
+			$('#questionText').hide();		
+			$('#codingQuestionHolder').show();
 			populateCoding(current_question);
 		}
 		questionCounter++;
 	});
+	
+	function populateCoding(current_question){
+		$('#questionNumber').html('<p class="text-info">Question '+ (questionCounter+1) +'</p>');
+		$('#problemTitle').html('<p class="question">'+ current_question.question +'</p>');	
+		$('#question').html('<p class="question">'+ current_question.question +'</p>');
+		$('#inputFormat').html('<p class="question">'+ current_question.question +'</p>');
+		$('#constraints').html('<p class="question">'+ current_question.question +'</p>');
+		$('#outputFormat').html('<p class="question">'+ current_question.question +'</p>');
+		var myCodeMirror = CodeMirror(document.getElementById('codeMirrorHolder'), {
+		  value: "function myScript(){return 100;}\n",
+		  mode:  "javascript",
+		  lineWrapping: true, lineNumbers: true
+		});
+	}
 	
 	function populateMCQ(current_question){
 		$('#questionNumber').html('<p class="text-info">Question '+ (questionCounter+1) +'</p>');
