@@ -58,7 +58,7 @@ $(document).ready(function(){
 		$.ajax({
 			type: 'GET',
 			dataType: 'jsonp',
-			data: {location: 'San Fransisco'},
+			data: {description: 'Apple', location: 'San Fransisco'},
 			url: 'http://jobs.github.com/positions.json?',
 			beforeSend: function(){				
 				ajaxindicatorstart('Loading Data.. Please Wait..');
