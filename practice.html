@@ -13,7 +13,8 @@
 		<!-- Code Mirror -->
 		<script src="js/codemirror.js"></script>
 		<link rel="stylesheet" href="css/codemirror.css">
-		<script src="mode/javascript/javascript.js"></script>
+		<!--script src="mode/javascript/javascript.js"></script-->
+        <script src="mode/clike/clike.js"></script>
 </head>
 <body> 
 
@@ -33,9 +34,12 @@
 		</div>
 		<input type="button" value="Submit" id="submit"> 
 	</div>
+    <div id="questionHolder">
+        <input type="button" id="prev" value="Previous Question" onclick="location.href='pre_page.html'">
+        <input type="button" id="next" value="Next Question" onclick="location.href='next_pare.html'">
 
 
-	<div id="questionHolder">
+	<div style="padding-top: 50px;">
 		<label for="problemTitle" class="holderLabel">Problem Title:</label>
 		<div id="problemTitle" class="holder">
 		</div>	
@@ -54,7 +58,8 @@
 		<label for="codeMirrorHolder" class="holderLabel">Code Here:</label>
 		<div id="codeMirrorHolder">
 		</div>
-	</div>	
+	</div>
+</div>	
 
 </body>
 </html>

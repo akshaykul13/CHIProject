@@ -31,8 +31,8 @@ $(document).ready(function(){
 		$('#outputFormat').html('<p>' + object.output_format + '</p>');
 		$('#questionHolder').show();
 		var myCodeMirror = CodeMirror(document.getElementById('codeMirrorHolder'), {
-		  value: "function myScript(){return 100;}\n",
-		  mode:  "javascript",
+		  value: "#include <iostream>\nint main()\n{\n\n}",
+		  mode:  "clike",
 		  lineWrapping: true, lineNumbers: true
 		});
 	}

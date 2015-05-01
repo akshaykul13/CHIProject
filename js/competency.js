@@ -2,7 +2,7 @@ $(document).ready(function(){
 	var questionCounter = 0;
 	var MCQ = "mcq";
 	var CODING = "coding";
-	var questions = [{
+        var questions = [{
 				"question_type" :   "mcq",
 				"question"		: 	"Q1: Who came up with theory of relativity?",
 				"choices"		: 	[
@@ -34,7 +34,8 @@ $(document).ready(function(){
 				"correct"		: 	"456",				
 			}];
 	
-	window.onload = function (){
+	window.onload = function ()
+        {
 		$('#infoArea').show();
 		$('#questionNumber').hide();
 		$('#questionText').hide();
@@ -43,23 +44,37 @@ $(document).ready(function(){
 		$('#progress_bar').css("width", "0%");
 	}
 	
-	$("#start_button").click(function(){
+	$("#start_button").click(
+                function(){
 		$('#infoArea').hide();
 		$('#next_link').show();
 		$('#questionNumber').show();
-		
+                $.ajax({
+                    type : 'GET',
+                    url : 'php/competency.php',
+        	
+        			success: function(data) {							
+        				console.log(data);
+        				//fetchedQuestions = data;
+        				//populateQuestionHolder(data);				
+                                } ,
+                                error: function(data){
+                                        console.log(data);
+                                }
+                        });              
+                 });
 		var current_question = questions[questionCounter];		
 		if(current_question.question_type == MCQ){
 			$('#questionText').show();		
 			$('#codingQuestionHolder').hide();
 			populateMCQ(current_question);						
-		}else{
+		}
+                else{
 			$('#questionText').hide();		
 			$('#codingQuestionHolder').show();
 			populateCoding(current_question);
 		}
 		questionCounter++;
-	});
 	
 	$('#next_link').click(function(){
 		var current_question = questions[questionCounter];		
