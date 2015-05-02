@@ -1,38 +1,39 @@
 $(document).ready(function(){
 	var questionCounter = 0;
-	var MCQ = "mcq";
-	var CODING = "coding";
-        var questions = [{
-				"question_type" :   "mcq",
-				"question"		: 	"Q1: Who came up with theory of relativity?",
-				"choices"		: 	[
-										"Sir Isaac Newton",
-										"Nicolaus Copernicus",
-										"Albert Einstein",
-										"Ralph Waldo Emmerson"
-									],
-				"correct"		: 	"Albert Einstein",
-				"explanation"	: 	"Albert Einstein drafted the special theory of relativity in 1905.",
- 
-			},
-			{
-				"question_type" :   "mcq",
-				"question"		: 	"Q2: Who is on the two dollar bill?",
-				"choices"		: 	[
-										"Thomas Jefferson",
-										"Dwight D. Eisenhower",
-										"Benjamin Franklin",
-										"Abraham Lincoln"
-									],
-				"correct"		: 	"Thomas Jefferson",
-				"explanation"	: 	"The two dollar bill is seldom seen in circulation. As a result, some businesses are confused when presented with the note.",
-			},
-			{
-				"question_type" :   "coding",
-				"question"		: 	"Print all numbers which do not begin with 42.",
-				"input"			: 	"456%0D%0A423",
-				"correct"		: 	"456",				
-			}];
+	var MCQ = 1;
+	var CODING = 2;
+	var alreadyDisplayedQuestions = [];
+	var questions = [{
+			"question_type" :   "mcq",
+			"question"		: 	"Q1: Who came up with theory of relativity?",
+			"choices"		: 	[
+									"Sir Isaac Newton",
+									"Nicolaus Copernicus",
+									"Albert Einstein",
+									"Ralph Waldo Emmerson"
+								],
+			"correct"		: 	"Albert Einstein",
+			"explanation"	: 	"Albert Einstein drafted the special theory of relativity in 1905.",
+
+		},
+		{
+			"question_type" :   "mcq",
+			"question"		: 	"Q2: Who is on the two dollar bill?",
+			"choices"		: 	[
+									"Thomas Jefferson",
+									"Dwight D. Eisenhower",
+									"Benjamin Franklin",
+									"Abraham Lincoln"
+								],
+			"correct"		: 	"Thomas Jefferson",
+			"explanation"	: 	"The two dollar bill is seldom seen in circulation. As a result, some businesses are confused when presented with the note.",
+		},
+		{
+			"question_type" :   "coding",
+			"question"		: 	"Print all numbers which do not begin with 42.",
+			"input"			: 	"456%0D%0A423",
+			"correct"		: 	"456",				
+		}];
 	
 	window.onload = function ()
         {
@@ -44,50 +45,44 @@ $(document).ready(function(){
 		$('#progress_bar').css("width", "0%");
 	}
 	
-	$("#start_button").click(
-                function(){
+	$("#start_button").click(function(){
 		$('#infoArea').hide();
 		$('#next_link').show();
 		$('#questionNumber').show();
-                $.ajax({
-                    type : 'GET',
-                    url : 'php/competency.php',
-        	
-        			success: function(data) {							
-        				console.log(data);
-        				//fetchedQuestions = data;
-        				//populateQuestionHolder(data);				
-                                } ,
-                                error: function(data){
-                                        console.log(data);
-                                }
-                        });              
-                 });
-		var current_question = questions[questionCounter];		
-		if(current_question.question_type == MCQ){
-			$('#questionText').show();		
-			$('#codingQuestionHolder').hide();
-			populateMCQ(current_question);						
-		}
-                else{
-			$('#questionText').hide();		
-			$('#codingQuestionHolder').show();
-			populateCoding(current_question);
-		}
-		questionCounter++;
+		
+		getNextQuestion();
+	 });		
+	 
+	 function getNextQuestion(){		 
+		 var jsonString = JSON.stringify(alreadyDisplayedQuestions);
+		 $.ajax({
+			type : 'GET',
+			url : 'php/competency.php',	
+			data: 'jsonString='+jsonString,
+			success: function(data) {											
+				var current_question = JSON.parse(data);
+				if(current_question != null){
+					if(current_question.type == MCQ){
+						$('#questionText').show();		
+						$('#codingQuestionHolder').hide();
+						populateMCQ(current_question);						
+					}else{
+						$('#questionText').hide();		
+						$('#codingQuestionHolder').show();
+						populateCoding(current_question);
+					}
+					alreadyDisplayedQuestions.push(current_question.id);					
+					questionCounter++;
+					}				
+			} ,
+			error: function(data){
+				console.log(data);
+			}
+		});              		
+	 }
 	
 	$('#next_link').click(function(){
-		var current_question = questions[questionCounter];		
-		if(current_question.question_type == MCQ){
-			$('#questionText').show();		
-			$('#codingQuestionHolder').hide();
-			populateMCQ(current_question);
-		}else{
-			$('#questionText').hide();		
-			$('#codingQuestionHolder').show();
-			populateCoding(current_question);
-		}
-		questionCounter++;
+		getNextQuestion();
 	});
 	
 	function populateCoding(current_question){
@@ -109,10 +104,10 @@ $(document).ready(function(){
 		$('#questionText').html('');
 		$('#questionText').append('<p class="question">'+ current_question.question +'</p>');
 		$('#questionText').append('<ul class="answers">'+
-		'<input type="radio" name="q'+(questionCounter+1)+'" value="a" id="q'+(questionCounter+1)+'a"><label for="q'+(questionCounter+1)+'a">'+ current_question.choices[0]+'</label><br/>'+
-		'<input type="radio" name="q'+(questionCounter+1)+'" value="b" id="q'+(questionCounter+1)+'b"><label for="q'+(questionCounter+1)+'b">'+ current_question.choices[1]+'</label><br/>'+
-		'<input type="radio" name="q'+(questionCounter+1)+'" value="c" id="q'+(questionCounter+1)+'c"><label for="q'+(questionCounter+1)+'c">'+ current_question.choices[2]+'</label><br/>'+
-		'<input type="radio" name="q'+(questionCounter+1)+'" value="d" id="q'+(questionCounter+1)+'d"><label for="q'+(questionCounter+1)+'d">'+ current_question.choices[3]+'</label><br/></ul>');
+		'<input type="radio" name="q'+(questionCounter+1)+'" value="a" id="q'+(questionCounter+1)+'a"><label for="q'+(questionCounter+1)+'a">'+ current_question.input_format+'</label><br/>'+
+		'<input type="radio" name="q'+(questionCounter+1)+'" value="b" id="q'+(questionCounter+1)+'b"><label for="q'+(questionCounter+1)+'b">'+ current_question.constraints+'</label><br/>'+
+		'<input type="radio" name="q'+(questionCounter+1)+'" value="c" id="q'+(questionCounter+1)+'c"><label for="q'+(questionCounter+1)+'c">'+ current_question.input+'</label><br/>'+
+		'<input type="radio" name="q'+(questionCounter+1)+'" value="d" id="q'+(questionCounter+1)+'d"><label for="q'+(questionCounter+1)+'d">'+ current_question.output+'</label><br/></ul>');
 		$('#progress_bar').css("width", ((questionCounter+1)*10)+"%");
 	}
 });
