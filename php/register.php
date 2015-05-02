@@ -27,7 +27,7 @@ if(isset($_POST['jsonString'])){
 			error_log($returnJSON);
 			echo $returnJSON;		
 		}else{
-			$query = "Insert into users values ('','".$firstname."','".$lastname."','".$emailid."','".$password."','')";
+			$query = "Insert into users values ('','".$firstname."','".$lastname."','".$emailid."','".$password."','','','','','')";
 			$query_run = mysqli_query($link, $query);
 			echo $query;
 			if($query_run){

@@ -55,6 +55,10 @@
 				<span id="display_company"></span><br/>
 				<label for="display_keywords">Keywords:</label>
 				<span id="display_keywords"></span><br/>
+				<label for="display_field">Field:</label>
+				<span id="display_field"></span><br/>
+				<label for="display_domain">Domain:</label>
+				<span id="display_domain"></span><br/>
 			</div><br/>
 			<!--object type="text/html" width="100%" height="100%" data="preferences.html" style="overflow:auto;"></object-->
 			<div class="side-by-side clearfix">
@@ -87,10 +91,37 @@
         </div>
 		
 		 <div class="side-by-side clearfix">          
-          <select data-placeholder="Your Favorite Types of Bear" style="width:350px;" multiple class="chosen-select" tabindex="14" id="keyword_preferences">
+          <select data-placeholder="Select keywords" style="width:350px;" multiple class="chosen-select" tabindex="14" id="keyword_preferences">
             <option value=""></option>
-            <option>American Black Bear</option>
-            <option>Asiatic Black Bear</option>
+            <option>Java</option>
+            <option>Ruby</option>
+            <option>Python</option>
+            <option>Giant Panda</option>
+            <option>Sloth Bear</option>
+            <option>Polar Bear</option>
+          </select>
+        </div>
+		
+		<div class="side-by-side clearfix">          
+          <select data-placeholder="Select you field" style="width:350px;" class="chosen-select" tabindex="14" id="field_preferences">
+            <option value=""></option>
+            <option>Computer Science</option>
+            <option>Information Systems</option>
+            <option>Computer Engineering</option>
+            <option>Electronics & Communications</option>
+            <option>Sloth Bear</option>
+            <option>Polar Bear</option>
+          </select>
+        </div>
+		
+		<div class="side-by-side clearfix">          
+          <select data-placeholder="Select your domain" style="width:350px;" class="chosen-select" tabindex="14" id="domain_preferences">
+            <option value=""></option>
+            <optgroup label="Computer Science">
+				<option>Databases</option>
+				<option>Networks</option>
+				<option>Software Development</option>
+			</optgroup>
             <option>Brown Bear</option>
             <option>Giant Panda</option>
             <option>Sloth Bear</option>

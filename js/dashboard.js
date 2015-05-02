@@ -127,6 +127,8 @@ $(document).ready(function(){
 				$('#display_location').html(object.location);
 				$('#display_company').html(object.company);
 				$('#display_keywords').html(object.keywords);
+				$('#display_field').html(object.field);
+				$('#display_domain').html(object.domain);
 			}
 		});		
 	});

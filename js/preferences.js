@@ -8,10 +8,16 @@ $(document).ready(function(){
 		console.log(company);
 		var keywords = $("#keyword_preferences").val();
 		console.log(keywords);
+		var field = $("#field_preferences").val();
+		console.log(field);
+		var domain = $("#domain_preferences").val();
+		console.log(domain);
 		var preferenceObject = new Object();
 		preferenceObject.location = location;
 		preferenceObject.company = company;
 		preferenceObject.keywords = keywords;
+		preferenceObject.field = field;
+		preferenceObject.domain = domain;
 		var jsonString = JSON.stringify(preferenceObject);
 		$.ajax({
 			type: 'POST',			

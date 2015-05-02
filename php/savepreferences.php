@@ -9,9 +9,11 @@ if(isset($_POST['jsonString'])){
 	$company = $json->{'company'};
 	$keywords = $json->{'keywords'};
 	$keywords_serialize = serialize($keywords);
+	$field = $json->{'field'};
+	$domain = $json->{'domain'};
 	$id = $_SESSION['id'];
 	
-	$query = "Update users set location_preference='".$location."', company_preference='".$company."', keyword_preference='".$keywords_serialize."' where id=".$id;
+	$query = "Update users set location_preference='".$location."', company_preference='".$company."', keyword_preference='".$keywords_serialize."', field_preference='".$field."', domain_preference='".$domain."' where id=".$id;
 	error_log($query);
 	$query_run = mysqli_query($link, $query);
 	echo $query;
@@ -22,3 +24,5 @@ if(isset($_POST['jsonString'])){
 		die('Invalid query: ' . mysql_error());		
 	}
 }
+
+?>

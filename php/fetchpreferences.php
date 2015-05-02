@@ -15,6 +15,8 @@ require 'connect.php';
 		$preferenceObject->company = $row['company_preference'];
 		$preferenceObject->location = $row['location_preference'];						
 		$preferenceObject->keywords = unserialize($row['keyword_preference']);
+		$preferenceObject->field = $row['field_preference'];						
+		$preferenceObject->domain = $row['domain_preference'];						
 		$returnJSON = json_encode($preferenceObject);
 		error_log($returnJSON);
 		echo $returnJSON;	

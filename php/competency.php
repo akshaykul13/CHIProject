@@ -4,16 +4,19 @@ require 'connect.php';
 	
 	$content = $_GET['jsonString'];
 	$json = json_decode($content, false);	
+	$alreadyDisplayedQuestions = $json->{'alreadyDisplayedQuestions'};
+	$question_type = $json->{'question_type'};
+	$difficulty = $json->{'difficulty'};
 	$exclusionList = "";		
-	foreach ($json as $value){		
+	foreach ($alreadyDisplayedQuestions as $value){		
 		$exclusionList = $exclusionList.$value.",";
 	}
 	$exclusionList = substr($exclusionList, 0, strlen($exclusionList)-1);
 	$exclusionList = "(".$exclusionList.")";	
-	if(count($json) == 0){
-		$query = "SELECT * from question_bank WHERE type = 1";	
+	if(count($alreadyDisplayedQuestions) == 0){
+		$query = "SELECT * from question_bank WHERE type=".$question_type." and difficulty=".$difficulty;	
 	}else{
-		$query = "SELECT * from question_bank WHERE type = 1 and id not in".$exclusionList;	
+		$query = "SELECT * from question_bank WHERE type=".$question_type." and difficulty=".$difficulty." and id not in".$exclusionList;	
 	}    
 	error_log($query);
 	$query_run = mysqli_query($link, $query);	
