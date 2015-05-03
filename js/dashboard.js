@@ -54,11 +54,38 @@ $(document).ready(function(){
 	}
 
 	window.onload = function (){
+                var loc, desc = "";
 		console.log("inside ajax");	
 		$.ajax({
+			type : 'GET',
+			url : 'php/fetchpreferences.php',	
+			success: function(data) 
+                        {
+                                
+                                console.log(data);
+                                loc = JSON.parse(data).location;
+                                if(JSON.parse(data).company)
+                                        desc += JSON.parse(data).company + " ";
+                                if(JSON.parse(data).keywords)
+                                        desc += JSON.parse(data).keywords + " ";
+                                if(JSON.parse(data).domain)
+                                        desc += JSON.parse(data).domain + " ";
+                                if(JSON.parse(data).field)
+                                        desc += JSON.parse(data).field + " ";
+                                //console.log(loc);			
+			} ,
+                        async : false,
+			error: function(data)
+                        {
+				console.log(data);
+			}
+		});
+                //console.log(loc);
+                //console.log(desc);
+                $.ajax({
 			type: 'GET',
 			dataType: 'jsonp',
-			data: {description: 'Apple', location: 'San Fransisco'},
+			data: { description: desc, location: loc},
 			url: 'http://jobs.github.com/positions.json?',
 			beforeSend: function(){				
 				ajaxindicatorstart('Loading Data.. Please Wait..');
@@ -67,7 +94,7 @@ $(document).ready(function(){
 				ajaxindicatorstop();
 			},
 			success: function(data) {			
-				console.log(data.length);
+				//console.log(data.length);
 				for( var i=0; i<data.length; i++) //Object obj in data)
 				{
 					var obj = data[i];

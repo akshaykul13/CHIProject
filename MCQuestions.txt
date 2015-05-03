@@ -1,3 +1,70 @@
+6-1. What is the IP Address range of APIPA?
+A. 169.254.0.1 to 169.254.0.254
+B. 169.254.0.1 to 169.254.0.255
+C. 169.254.0.1 to 169.254.255.254
+D. 169.254.0.1 to 169.254.255.255
+
+6-2. Which of the following is correct in VLSM?
+A. Can have subnets of different sizes
+B. Subnets must be in same size            
+C. No required of subnet
+D. All of above
+
+6-3. What does the port number in a TCP connection specify?
+A. It specifies the communication process on the two end systems
+B. It specifies the quality of the data & connection
+C. It specify the size of data
+D. All of the above
+
+6-4. The class-based addressing is also known as
+A. Modern Model
+B. Classful Model
+C. Classless Model
+D. Heterogeneous Model
+
+6-5. Which of the following is correct in CIDR?
+A. Class A includes Class B network
+B. There are only two networks
+C. There are high & low class network
+D. There is no concept of class A, B, C networks
+
+6-6. What is the size of Source and Destination IP address in IP header?
+A. 4 bits
+B. 8 bits
+C. 16 bits
+D. 32 bits
+
+6-7. Which of the following is reliable communication?
+A. TCP
+B. IP
+C. UPD
+D. All of them
+
+6-8. What is the typical range of Ephemeral ports?
+A. 1 to 80
+B. 1 to 1024
+C. 80 to 8080
+D. 1024 to 65535
+
+6-9. What is the purpose of the PSH flag in the TCP header?
+A. Typically used to indicate end of message
+B. Typically used to indicate beginning of message
+C. Typically used to push the message
+D. Typically used to indicate stop the message
+
+6-10. What is the natural mask for a class C Network?
+A. 255.255.255.1
+B. 255.255.255.0
+C. 255.255.255.254
+D. 255.255.255.255
+
+ 
+
+ 
+Click Here for Answers
+1 – C / 2 – A / 3 – A / 4 – B / 5 – D / 6 – D / 7 – A / 8 – D / 9 – A / 10 – B
+
+
 6-1. The minimal set of super key is called
 A. Primary key
 B. Secondary key
