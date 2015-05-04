@@ -15,7 +15,7 @@ $(document).ready(function(){
 		$('#questionText').hide();
 		$('#completionArea').hide();
 		$('#next_link').hide();
-		$('#submit_link').show();
+		$('#submit_link').hide();
 		$('#codingQuestionHolder').hide();
 		$('#progress_bar').css("width", "0%");
 	}
@@ -23,7 +23,7 @@ $(document).ready(function(){
 	$("#start_button").click(function(){
 		$('#infoArea').hide();
 		$('#next_link').show();
-		$('#submit_link').hide();
+		$('#submit_link').show();
 		$('#questionNumber').show();
 		
 		getNextQuestion();
@@ -31,13 +31,27 @@ $(document).ready(function(){
 	 
 	 function getNextQuestion(){
 		var object = new Object();
+		$.ajax({
+			type : 'GET',
+			url : 'php/fetchpreferences.php',	
+			success: function(data) 
+            {				
+				console.log(data);
+				object.field = JSON.parse(data).field;
+			} ,
+            async : false,
+			error: function(data)
+                        {
+				console.log(data);
+			}
+		});		
 		object.alreadyDisplayedQuestions = alreadyDisplayedQuestions;
 		object.question_type = questionOrder[questionCounter];
 		if(questionOrder[questionCounter] == MCQ){
 			object.difficulty = current_mcq_difficulty;
 		}else{
 			object.difficulty = current_coding_difficulty;
-		}		
+		}	
 		console.log("Fetching Question : ");
 		console.log(object);
 		var jsonString = JSON.stringify(object);
@@ -96,6 +110,7 @@ $(document).ready(function(){
 				$('#questionNumber').hide();
 				$('#questionText').hide();
 				$('#codingQuestionHolder').hide();
+				$('#submit_link').hide();
 				$('#completionArea').show();
 			} 
 		});
@@ -152,11 +167,11 @@ $(document).ready(function(){
 	
 	function populateCoding(current_question){
 		$('#questionNumber').html('<p class="text-info">Question '+ (questionCounter+1) +'</p>');
-		$('#problemTitle').html('<p class="question">'+ current_question.title +'</p>');	
-		$('#question').html('<p class="question">'+ current_question.question +'</p>');
-		$('#inputFormat').html('<p class="question">'+ current_question.input_format +'</p>');
-		$('#constraints').html('<p class="question">'+ current_question.constraints +'</p>');
-		$('#outputFormat').html('<p class="question">'+ current_question.output_format +'</p>');		
+		$('#problemTitle').html('<p class="coding_question">'+ current_question.title +'</p>');	
+		$('#question').html('<p class="coding_question">'+ current_question.question +'</p>');
+		$('#inputFormat').html('<p class="coding_question">'+ current_question.input_format +'</p>');
+		$('#constraints').html('<p class="coding_question">'+ current_question.constraints +'</p>');
+		$('#outputFormat').html('<p class="coding_question">'+ current_question.output_format +'</p>');		
 	}
 	
 	function populateMCQ(current_question){
@@ -198,14 +213,10 @@ $(document).ready(function(){
                     $('.meta').text( response.meta );
                     $('.output').html('<strong>Output</strong>: <br><br><pre>' + response.output + '</pre>');
 					console.log(response.output);
-					console.log(current_question.output_test_case);
-					if(response.output == current_question.output){	
-						console.log("Correct coding answer");
-						competency_score = competency_score + current_coding_difficulty*20;
-						current_coding_difficulty++;
-					}else{
-						
-					}                
+					//console.log(current_question.output_test_case);					
+					competency_score = competency_score + current_coding_difficulty*20;
+					current_coding_difficulty++;
+					                
                     if( response.cmpinfo ) {
                         $('.cmpinfo').remove();
                         $('.meta').after('<div class="cmpinfo"></div>');

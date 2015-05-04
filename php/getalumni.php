@@ -1,9 +1,15 @@
 <?php
 require 'connect.php';
+require 'core.php';
 
-
-echo 'Here';
-	$query = "Select * from alumni where company ='Apple'";
+	$content = $_GET['jsonString'];
+	$json = json_decode($content, false);	
+	$company = $json->{'company'};
+	if($company != ""){
+		$query = "Select * from alumni where company ='".$company."'";	
+	}else{
+		$query = "Select * from alumni";
+	}	
 	$query_run = mysqli_query($link, $query);
 	$returnArray =[];
 	if($query_run){

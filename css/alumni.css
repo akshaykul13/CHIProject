@@ -20,3 +20,8 @@ body {
 	width: 100%;
 	border-collapse: collapse;  
 }
+
+.alumniDetails {
+	color: white;
+	margin: 10px;
+}

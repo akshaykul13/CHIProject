@@ -7,7 +7,7 @@ require 'connect.php';
 	$alreadyDisplayedQuestions = $json->{'alreadyDisplayedQuestions'};
 	$question_type = $json->{'question_type'};
 	$difficulty = $json->{'difficulty'};
-        error_log($difficulty);
+	$field = $json->{'field'};
 	$exclusionList = "";		
 	foreach ($alreadyDisplayedQuestions as $value){		
 		$exclusionList = $exclusionList.$value.",";
@@ -15,9 +15,9 @@ require 'connect.php';
 	$exclusionList = substr($exclusionList, 0, strlen($exclusionList)-1);
 	$exclusionList = "(".$exclusionList.")";	
 	if(count($alreadyDisplayedQuestions) == 0){
-		$query = "SELECT * from question_bank WHERE type=".$question_type." and difficulty=".$difficulty;	
+		$query = "SELECT * from question_bank WHERE type=".$question_type." and difficulty=".$difficulty." and major='".$field."'";	
 	}else{
-		$query = "SELECT * from question_bank WHERE type=".$question_type." and difficulty=".$difficulty." and id not in".$exclusionList;	
+		$query = "SELECT * from question_bank WHERE type=".$question_type." and difficulty=".$difficulty." and major='".$field."'"." and id not in".$exclusionList;	
 	}    
 	error_log($query);
 	$query_run = mysqli_query($link, $query);	
