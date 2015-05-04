@@ -59,29 +59,34 @@ $(document).ready(function(){
 		$.ajax({
 			type : 'GET',
 			url : 'php/fetchpreferences.php',	
+			beforeSend: function(){				
+				ajaxindicatorstart('Loading Data.. Please Wait..');
+			},
+			complete: function(){
+				ajaxindicatorstop();
+			},
 			success: function(data) 
-                        {
-                                
-                                console.log(data);
-                                loc = JSON.parse(data).location;
-                                if(JSON.parse(data).company)
-                                        desc += JSON.parse(data).company + " ";
-                                if(JSON.parse(data).keywords)
-                                        desc += JSON.parse(data).keywords + " ";
-                                //if(JSON.parse(data).domain)
-                                 //       desc += JSON.parse(data).domain + " ";
-                                //if(JSON.parse(data).field)
-                                  //      desc += JSON.parse(data).field + " ";
-                                //console.log(loc);			
+			{
+					
+				console.log(data);
+				loc = JSON.parse(data).location;
+				if(JSON.parse(data).company)
+						desc += JSON.parse(data).company + " ";
+				if(JSON.parse(data).keywords)
+						desc += JSON.parse(data).keywords + " ";
+				//if(JSON.parse(data).domain)
+				 //       desc += JSON.parse(data).domain + " ";
+				//if(JSON.parse(data).field)
+				  //      desc += JSON.parse(data).field + " ";
+				//console.log(loc);			
 			} ,
-                        async : false,
+            async : false,
 			error: function(data)
-                        {
+            {
 				console.log(data);
 			}
 		});
-                //console.log(loc);
-                //console.log(desc);
+		
         $.ajax({
 			type: 'GET',
 			dataType: 'jsonp',

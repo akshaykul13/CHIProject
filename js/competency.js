@@ -110,6 +110,7 @@ $(document).ready(function(){
 				$('#questionNumber').hide();
 				$('#questionText').hide();
 				$('#codingQuestionHolder').hide();
+				$('#submit_link').hide();
 				$('#completionArea').show();
 			} 
 		});
