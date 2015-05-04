@@ -50,7 +50,8 @@ $(document).ready(function(){
 			data: 'jsonString='+jsonString,	
 			url: 'php/register.php',			
 			success: function(data) {			
-				console.log(data);				
+				console.log(data);
+				window.location.replace("login.html");
 			}
 		});
 	});

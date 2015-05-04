@@ -51,13 +51,12 @@
 					<label for="outputFormat" class="holderLabel">Output Format:</label>
 					<div id="outputFormat" class="holder">
 					</div>
-					<label for="codeMirrorHolder" class="holderLabel">Code Here:</label>
-					<div id="codeMirrorHolder">
-					</div>
+					<p class="text-warning" style="font-size:16px; font-style:bold; padding:10px;">Code Here:</p>
+					
 					<form id="code" action="#" method="post">
 						<div>
 							<label for="lang">Select Language:</label>
-							<select name="lang" id="lang" class="span6">
+							<select name="lang" id="lang" class="span6" style="margin-left: 5%;">
 								<option value="7    ">Ada (gnat-4.3.2)</option>
 								<option value="13">Assembler (nasm-2.07)</option>
 								<option value="45">Assembler (gcc-4.3.4)</option>
@@ -124,13 +123,8 @@
 					
 						<div>
 							<label for="source">Source Code:</label>
-							<textarea class="span6" cols="40" rows="10" name="source" id="source" placeholder="Paste/Type Code Here"></textarea>
-						</div>
-						
-						<div>
-							<label for="input">Input: <span class="description">Input Test Cases Here</span></label>
-							<textarea class="span6" cols="40" rows="3" name="input" id="input"></textarea>
-						</div>
+							<textarea class="span6" cols="100" rows="10" name="source" id="source" placeholder="Paste/Type Code Here" style="margin-left: 7%;"></textarea>
+						</div>												
 
 						<div>
 							<input type="submit" name="submit" class="btn btn-success btn-large" value="Submit" />

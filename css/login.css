@@ -3,11 +3,14 @@
 }
 
 html {
+  background-image: url("../images/background2.jpg");
+  background-repeat: no-repeat;
+  background-size: 110% auto;
+  background-position: center; 
   overflow-y: scroll;
 }
 
 body {
-  background: white;
   font-family: 'Titillium Web', sans-serif;
 }
 
@@ -112,7 +115,7 @@ input, textarea {
   display: block;
   width: 100%;
   padding: 5px 10px;
-  background: none;
+  background: rgba(19, 35, 47, 1);
   background-image: none;
   border: 1px solid #a0b3b0;
   color: #ffffff;

@@ -54,7 +54,7 @@ $(document).ready(function(){
 	}
 
 	window.onload = function (){
-                var loc, desc = "";
+        var loc, desc = "";
 		console.log("inside ajax");	
 		$.ajax({
 			type : 'GET',
@@ -68,10 +68,10 @@ $(document).ready(function(){
                                         desc += JSON.parse(data).company + " ";
                                 if(JSON.parse(data).keywords)
                                         desc += JSON.parse(data).keywords + " ";
-                                if(JSON.parse(data).domain)
-                                        desc += JSON.parse(data).domain + " ";
-                                if(JSON.parse(data).field)
-                                        desc += JSON.parse(data).field + " ";
+                                //if(JSON.parse(data).domain)
+                                 //       desc += JSON.parse(data).domain + " ";
+                                //if(JSON.parse(data).field)
+                                  //      desc += JSON.parse(data).field + " ";
                                 //console.log(loc);			
 			} ,
                         async : false,
@@ -82,7 +82,7 @@ $(document).ready(function(){
 		});
                 //console.log(loc);
                 //console.log(desc);
-                $.ajax({
+        $.ajax({
 			type: 'GET',
 			dataType: 'jsonp',
 			data: { description: desc, location: loc},
@@ -103,20 +103,25 @@ $(document).ready(function(){
 					var clock = time2.substring(7,15);
 					var year = time2.substring(time2.length-4);
 					time2 = time2.substring(0,6)+" "+year+" "+clock;
-					$('#joblist tbody').append('<tr><td>'+time2+'</td><td>'+obj.company+'</td><td>'+obj.title+'</td><td>'+obj.location+'</td><td><a>Link</a></td><td><div class="arrow"></div></td></tr><tr class="tableRowInfo"><td colspan="6"><div style="width:100%;"><img src="'+obj.company_logo+'"alt="Company Logo" height="60" style="padding-top:10px;"/><a href="'+obj.company_url+'" style="padding-left:5em;text-decoration:underline;">Company URL</a><a href="'+obj.url+'" style="padding-left:5em;text-decoration:underline;">Job URL</a><h4>Job Description</h4>'+obj.description+'How to apply: 	'+obj.how_to_apply+'</div></td></tr>');
+					console.log(obj.company_logo);
+					var logo = obj.company_logo;
+					if(logo == null){
+						logo = "images/companylogo.png"
+					}
+					$('#joblist tbody').append('<tr><td>'+time2+'</td><td>'+obj.company+'</td><td>'+obj.title+'</td><td>'+obj.location+'</td><td><div class="arrow"></div></td></tr><tr class="tableRowInfo"><td colspan="5"><div style="width:100%;"><img src="'+logo+'"alt="Company Logo" height="60" style="padding-top:10px;"/><a href="'+obj.company_url+'" target="_blank" style="padding-left:5em;text-decoration:underline;">Company URL</a><a href="'+obj.url+'"  target="_blank" style="padding-left:5em;text-decoration:underline;">Job URL</a><a href="alumni.html"  style="padding-left:5em;text-decoration:underline;">Alumni</a><h4>Job Description</h4>'+obj.description+'How to apply: 	'+obj.how_to_apply+'</div></td></tr>');
 					//console.log(data[i]);
 					//console.log(obj.created_at.type);
 				}
-				$("tbody tr:even").addClass("even");								
-				$("tbody tr:not(.even)").hide();
-				$("tbody tr:first-child").show();				
-				$("tbody tr.even").click(function(){
+				$("#joblist tbody tr:even").addClass("even");								
+				$("#joblist tbody tr:not(.even)").hide();
+				$("#joblist tbody tr:first-child").show();				
+				$("#joblist tbody tr.even").click(function(){
 					$(this).next("tr").toggle();
 					$(this).find(".arrow").toggleClass("up");
 				});
 			}
 		});				
-	}
+	}				
 	
 	$("#logout_link").click(function(){
 		$.ajax({
@@ -150,13 +155,56 @@ $(document).ready(function(){
 				console.log(JSONObject);
 				console.log(JSON.parse(JSONObject));
 				var object = JSON.parse(JSONObject);
-				console.log(object.location);				
-				$('#display_location').html(object.location);
-				$('#display_company').html(object.company);
-				$('#display_keywords').html(object.keywords);
-				$('#display_field').html(object.field);
-				$('#display_domain').html(object.domain);
+				console.log(object.location);	
+				if(object.location != "")
+					$('#display_location').html(object.location);
+				else
+					$('#display_location').html("-");
+				if(object.company != "")
+					$('#display_company').html(object.company);
+				else
+					$('#display_company').html("-");
+				if(object.keywords != null)
+					$('#display_keywords').html(object.keywords);
+				else
+					$('#display_keywords').html("-");
+				if(object.field != "")
+					$('#display_field').html(object.field);
+				else
+					$('#display_field').html("-");
+				if(object.domain != "")
+					$('#display_domain').html(object.domain);
+				else
+					$('#display_domain').html("-");
 			}
 		});		
+	});
+	
+	$('#scores_link').click(function(){
+		console.log("Clicked alumni");
+		$('#light1').css('display', 'block');
+		$('#fade1').css('display', 'block');
+		$.ajax({
+			type: 'GET',						
+			url: 'php/getscores.php',			
+			success: function(JSONObject) {			
+				console.log(JSON.parse(JSONObject));	
+				var scores = JSON.parse(JSONObject);
+				for (i = 0; i < scores.length; i++) {
+					console.log(scores[i]);
+					var criteria = "";
+					if(scores[i].field == "" && scores[i].domain == ""){
+						criteria = "-";
+					}else if(scores[i].field == "" && scores[i].domain != ""){
+						criteria = scores[i].domain;
+					}else if(scores[i].field != "" && scores[i].domain == ""){
+						criteria = scores[i].field;
+					}else{
+						criteria = scores[i].field + ", " + scores[i].domain;
+					}
+					$('#scoresTable tbody').append('<tr><td>'+scores[i].submission_time+'</td><td>'+criteria+'</td><td>'+scores[i].score+'</td></tr>');
+				}
+			}
+		});
 	});
 });

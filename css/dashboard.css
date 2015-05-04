@@ -30,6 +30,18 @@ h1 {
 	border-collapse: collapse;  
 }
 
+.preferences-table{
+	background: #34495E;
+	color: #fff;  
+	overflow: hidden;  
+	width: 100%;
+	border-collapse: collapse; 
+}
+
+.pref_entry {
+	padding-bottom: 5px;
+}
+
 table, th, td {
 	border-top: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;   
@@ -62,7 +74,7 @@ tr {
 	font-size: 15px;
 	text-transform: uppercase;	
 	background: black;	
-	background: rgba(26, 26, 26, 0.5);
+	background: rgba(73, 73, 73, 0.8);
 	transition:background 0.5s ease ;
 	-webkit-transition:background 0.5s ease ;
 	top: 0;
@@ -175,3 +187,7 @@ ul {
 .chosen-container {
 	width: 350px !important;
 }
+
+.btn-info{color:#ffffff;background-color:#3498db;border-color:#3498db}
+
+.btn{display:inline-block;margin-bottom:0;font-weight:normal;text-align:center;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;background-image:none;border:1px solid transparent;white-space:nowrap;padding:5px 15px;font-size:15px;line-height:1.42857143;border-radius:4px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}

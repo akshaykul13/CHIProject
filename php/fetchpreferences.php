@@ -25,3 +25,5 @@ require 'connect.php';
 		error_log("Error updating preferences");
 		die('Invalid query: ' . mysql_error());		
 	}
+	
+?>
