@@ -6,68 +6,74 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">   
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 			
-		<link rel="stylesheet" type="text/css" href="css/dashboard.css">
+		<link rel="stylesheet" href="css/bootstrap.flatly.min.css">
 		<link rel="stylesheet" type="text/css" href="css/practice.css">
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>	
 		<script src="js/practice.js" type="text/javascript"></script>
 		<script src="js/ideone.js" type="text/javascript"></script>
 </head>
 <body> 
-	<div class="container">
-		<a id="next_link" href="#" class="btn btn-link">Next</a>
-		<a id="submit_link" href="#" class="btn btn-link">Submit</a>
-		<div id="questionArea">
-			<div id="infoArea">
-                                
-				<p class="text-primary"> Select constraints </p>
-                                
-                        			<div class="side-by-side clearfix">
-                                  <select data-placeholder="Select question type" style="width:350px;" class="chosen-select-deselect" tabindex="12" id="question_type">
-                                    <option value=""></option>			
-                        			<option>1</option>
-                                                <option>2</option>
-                                  </select>
-                                </div>
-                        			<div class="side-by-side clearfix">
-                                  <select data-placeholder="Select your preferred company" style="width:350px;" class="chosen-select-deselect" tabindex="12" id="company_preference">
-                                    <option value=""></option>			
-                        			<option>Amazon</option>
-                                                <option>Apple</option>
-                                                <option>Bloomberg L.P.</option>
-                                                <option>Cisco</option>
-                                                <option>Facebook</option>
-                                                <option>Github</option>
-                        			<option>Google</option>
-                                                <option>Microsoft</option>        
-                                                <option>Udemy</option>
-                                                <option>Yelp</option>
-                                  </select>
-                                </div>
-		
-                        		<div class="side-by-side clearfix">          
-                                  <select data-placeholder="Select you field" style="width:350px;" class="chosen-select" tabindex="14" id="field_preferences">
-                                    <option value=""></option>
-                                    <option>Computer Engineering</option>
-                                    <option>Computer Science</option>
-                                    <option>Electrical Engineering</option>
-                                    <option>Electronics & Communications</option>
-                                    <option>Math</option>
-                                    <option>Information Systems</option>          
-                                  </select>
-                                </div>
-		
-                        		<div class="side-by-side clearfix">          
-                                  <select data-placeholder="Select your domain" style="width:350px;" class="chosen-select" tabindex="14" id="domain_preferences">
-                                    <option value=""></option>
-                                    <optgroup label="Computer Science">
-                                                        <option>Algorithms</option>
-                        				<option>Database</option>
-                        				<option>Design</option>
-                        				<option>Networks</option>
-                                                        <option>PHP</option>
-                                                        <option>HTML</option>
-                        				<option>Software Development</option>
-                        	    </optgroup>
+	<div class="header-wrapper" id="headerWrapper">
+		<div class="header">
+			<!--a href="/" class="logo"><img src="/wp-content/themes/grainandmortar/images/logo.svg" alt="Grain &amp; Mortar"></a-->
+			<ul class="nav">
+				<li class="home"><a href="dashboard.html">Home</a></li>				
+				<li class="home"><a href="practice.html">Practice</a></li>
+				<li class="home"><a href="firepad.html" target="_blank">Collabedit</a></li>				
+				<li class="home"><a href="#" id="logout_link">Logout</a></li>
+			</ul>		
+		</div> <!--header-->
+	</div>
+	<div class="container">		
+		<div id="params">
+			<p class="text-info" style="font-size: 16px;font-weight:bold;"> Select constraints </p>                                
+			<div class="side-by-side clearfix">
+				<select data-placeholder="Select question type" style="width:350px;" class="chosen-select-deselect" tabindex="12" id="question_type">
+					<option value=""></option>			
+					<option>MCQ</option>
+					<option>Coding</option>
+				</select>
+			</div>
+							<div class="side-by-side clearfix">
+							  <select data-placeholder="Select your preferred company" style="width:350px;" class="chosen-select-deselect" tabindex="12" id="company_preference">
+								<option value=""></option>			
+								<option>Amazon</option>
+											<option>Apple</option>
+											<option>Bloomberg L.P.</option>
+											<option>Cisco</option>
+											<option>Facebook</option>
+											<option>Github</option>
+								<option>Google</option>
+											<option>Microsoft</option>        
+											<option>Udemy</option>
+											<option>Yelp</option>
+							  </select>
+							</div>
+	
+							<div class="side-by-side clearfix">          
+							  <select data-placeholder="Select you field" style="width:350px;" class="chosen-select" tabindex="14" id="field_preferences">
+								<option value=""></option>
+								<option>Computer Engineering</option>
+								<option>Computer Science</option>
+								<option>Electrical Engineering</option>
+								<option>Electronics & Communications</option>
+								<option>Math</option>
+								<option>Information Systems</option>          
+							  </select>
+							</div>
+	
+							<div class="side-by-side clearfix">          
+							  <select data-placeholder="Select your domain" style="width:350px;" class="chosen-select" tabindex="14" id="domain_preferences">
+								<option value=""></option>
+								<optgroup label="Computer Science">
+													<option>Algorithms</option>
+									<option>Database</option>
+									<option>Design</option>
+									<option>Networks</option>
+													<option>PHP</option>
+													<option>HTML</option>
+									<option>Software Development</option>
+							</optgroup>
                                     <optgroup label="Math">
                                                         <option>Algebra</option>
                                                         <option>Geometry</option>
@@ -91,13 +97,19 @@
                                   </select>
                                 </div>
                                 
-				<p class="text-success"> Please click on "Start" to begin practice. </p>
-				<a id="start_button" href="#" class="btn btn-success">Start</a>
-			</div>			
+				<p class="text-success"> Please click on "Begin" to begin practice. </p>
+				<a id="start_button" href="#" class="btn btn-success">Begin</a>
+		</div>
+		<div id="questionArea">
+			<div id="infoArea">                                
+				
+			</div>						
+			<a id="next_link" href="#" class="btn btn-link">Next</a>
 			<div id="questionNumber">						
 			</div>									
 			<div id="questionText">					
 			</div>
+			<a id="submit_link" href="#" class="btn btn-link">Submit</a>
 			<div id="codingQuestionHolder">
 				<label for="problemTitle" class="holderLabel">Problem Title:</label>
 				<div id="problemTitle" class="holder">
@@ -120,7 +132,7 @@
 				<form id="code" action="#" method="post">
 					<div>
 						<label for="lang">Select Language:</label>
-						<select name="lang" id="lang" class="span6">
+						<select name="lang" id="lang" class="span6" style="margin-left:5%;">
 							<option value="7    ">Ada (gnat-4.3.2)</option>
 							<option value="13">Assembler (nasm-2.07)</option>
 							<option value="45">Assembler (gcc-4.3.4)</option>
@@ -187,12 +199,12 @@
 				
 					<div>
 						<label for="source">Source Code:</label>
-						<textarea class="span6" cols="40" rows="10" name="source" id="source" placeholder="Paste/Type Code Here"></textarea>
+						<textarea  style="margin-left:8%;" class="span6" cols="80" rows="10" name="source" id="source" placeholder="Paste/Type Code Here"></textarea>
 					</div>
 					
 					<div>
-						<label for="input">Input: <span class="description">Input Test Cases Here</span></label>
-						<textarea class="span6" cols="40" rows="3" name="input" id="input"></textarea>
+						<label for="input"><span class="description">Input Test Cases Here:</span></label>
+						<textarea  style="margin-left:2%;" class="span6" cols="40" rows="3" name="input" id="input"></textarea>
 					</div>
 
 					<div>

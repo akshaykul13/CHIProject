@@ -55,7 +55,7 @@ $(document).ready(function(){
 
 	window.onload = function (){
         var loc, desc = "";
-		console.log("inside ajax");	
+		//console.log("inside ajax");	
 		$.ajax({
 			type : 'GET',
 			url : 'php/fetchpreferences.php',	
@@ -108,7 +108,7 @@ $(document).ready(function(){
 					var clock = time2.substring(7,15);
 					var year = time2.substring(time2.length-4);
 					time2 = time2.substring(0,6)+" "+year+" "+clock;
-					console.log(obj.company_logo);
+					//console.log(obj.company_logo);
 					var logo = obj.company_logo;
 					if(logo == null){
 						logo = "images/companylogo.png"

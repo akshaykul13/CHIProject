@@ -214,7 +214,7 @@ $(document).ready(function(){
                     $('.output').html('<strong>Output</strong>: <br><br><pre>' + response.output + '</pre>');
 					console.log(response.output);
 					//console.log(current_question.output_test_case);					
-					competency_score = competency_score + current_coding_difficulty*20;
+					competency_score = competency_score + current_coding_difficulty*25;
 					current_coding_difficulty++;
 					                
                     if( response.cmpinfo ) {

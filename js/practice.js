@@ -4,11 +4,10 @@ $(document).ready(function(){
 	var MCQ = 1;
 	var CODING = 2;
 	var alreadyDisplayedQuestions = [];
-	var current_question = null;
-        var jsonString;
-        var preferenceObject;
+	var current_question = null;                
 	
 	window.onload = function (){
+		$('#questionArea').hide();
 		$('#infoArea').show();
 		$('#questionNumber').hide();
 		$('#questionText').hide();
@@ -20,105 +19,73 @@ $(document).ready(function(){
 	}
 	
 	$("#start_button").click(function(){
-		$('#infoArea').hide();
-		$('#next_link').show();
-		$('#submit_link').hide();
-		$('#questionNumber').show();
-		console.log('clicked');	
-                
-                var question_type = $('#question_type').val();
-		console.log(question_type);
-		var company = $('#company_preference').val();
-		console.log(company);
-		var field = $("#field_preferences").val();
-		console.log(field);
-		var domain = $("#domain_preferences").val();
-		console.log(domain);
-		var difficulty = $("#difficulty").val();
-		console.log(difficulty);
-                
-		preferenceObject = new Object();
-		preferenceObject.difficulty = difficulty;
-		preferenceObject.company = company;
-		preferenceObject.field = field;
-		preferenceObject.question_type = question_type;
-		preferenceObject.domain = domain;
-		jsonString = JSON.stringify(preferenceObject);
-                console.log(jsonString);
-                numberofquestions = 5;/*
-		$.ajax({
-			type: 'POST',			
-			data: 'jsonString='+jsonString,	
-			url: 'php/numberofquestions.php',			
-			success: function(data) {			
-				console.log(data);
-				numberofquestions = Number(JSON.parse(data));
-			},
-                        async : false,
-			error: function(data){
-				console.log(data);
-			}
-		});
-                /*
-		$.ajax({
-			type : 'GET',
-			url : 'php/numberofquestions.php',
-			data: 'jsonString='+jsonString,	
-			success: function(data) {											
-				numberofquestions = Number(JSON.parse(data));
-			} ,
-                        async : false,
-			error: function(data){
-				console.log(data);
-			}
-		});   */
+		//$('#infoArea').hide();
+		//$('#next_link').show();
+		//$('#submit_link').hide();
+		//$('#questionNumber').show();
+		        
 		getNextQuestion();
 	 });		
          
-	 function getNextQuestion(){
-		var object = new Object();
-		object.alreadyDisplayedQuestions = alreadyDisplayedQuestions;	
+	 function getNextQuestion(){		               
+        var question_type = $('#question_type').val();
+		if(question_type == "MCQ"){
+			question_type = 1;
+		}else{
+			question_type = 2;
+		}		
+		var company = $('#company_preference').val();	
+		var field = $("#field_preferences").val();		
+		var domain = $("#domain_preferences").val();		
+		var difficulty = $("#difficulty").val();
+	                
+		var questionObject = new Object();
+		questionObject.difficulty = difficulty;
+		questionObject.company = company;
+		questionObject.field = field;
+		questionObject.question_type = question_type;
+		questionObject.domain = domain;
+		questionObject.alreadyDisplayedQuestions = alreadyDisplayedQuestions;
+		var jsonString = JSON.stringify(questionObject);		
 		console.log("Fetching Question : ");
-		console.log(object);
+		console.log(questionObject);
 		$.ajax({
 			type : 'GET',
 			url : 'php/question.php',	
 			data: 'jsonString='+jsonString,
 			success: function(data) {
-                                console.log(data[1]);											
-				current_question = JSON.parse(JSON.parse(data[1]));
-                                console.log(current_question);
+                console.log(data);	
+				current_question = JSON.parse(data);
 				if(current_question != null){
-					if(current_question.type == 1){
+					if(current_question.type == MCQ){
 						$('#questionText').show();		
 						$('#codingQuestionHolder').hide();
+						$('#submit_link').show();
 						populateMCQ(current_question);						
 					}else{
 						$('#questionText').hide();		
 						$('#codingQuestionHolder').show();
+						$('#submit_link').hide();
 						populateCoding(current_question);
 					}
 					alreadyDisplayedQuestions.push(current_question.id);					
 					questionCounter++;
-				}				
+					$('#questionArea').show();
+					$('#next_link').show();					
+				}	
 			} ,
 			error: function(data){
 				console.log(data);
 			}
-		});   
-		if(questionCounter == numberofquestions){
-			$('#next_link').hide();
-			$('#submit_link').show();
-		}
+		});   		
 	}
 	
-	$('#next_link').click(function(){
-		evaluateCurrentQuestion();
+	$('#next_link').click(function(){		
 		getNextQuestion();
 	});
 	
 	$('#submit_link').click(function(){
-		window.location.replace("dashboard.html");
+		evaluateCurrentQuestion();
 	});
 	
 	$('#finish_button').click(function(){
@@ -133,21 +100,28 @@ $(document).ready(function(){
 				console.log($('#q'+(questionCounter)+'a').val() + ":" + current_question.output_format);
 				if($('#q'+(questionCounter)+'a').val() == current_question.output){
 					console.log("Correct Answer");
+					$('#questionText').append('<p class="text-success">Correct Answer.</p>')
+				}else{
+					$('#questionText').append('<p class="text-danger">Incorrect Answer. The correct answer is '+current_question.output+'</p>')
+					
 				}
 			}else if($('#q'+(questionCounter)+'b').is(':checked')){
 				console.log($('#q'+(questionCounter)+'b').val());
 				if($('#q'+(questionCounter)+'b').val() == current_question.output){
 					console.log("Correct Answer");
+					$('#questionText').append('<p class="text-success">Correct Answer.</p>')
 				}
 			}else if($('#q'+(questionCounter)+'c').is(':checked')){
 				console.log($('#q'+(questionCounter)+'c').val());
 				if($('#q'+(questionCounter)+'c').val() == current_question.output){
 					console.log("Correct Answer");
+					$('#questionText').append('<p class="text-success">Correct Answer.</p>')
 				}
 			}else if($('#q'+(questionCounter)+'d').is(':checked')){
 				console.log($('#q'+(questionCounter)+'d').val()+":"+current_question.output_format);
 				if($('#q'+(questionCounter)+'d').val() == current_question.output_format){
 					console.log("Correct Answer");
+					$('#questionText').append('<p class="text-success">Correct Answer.</p>')
   				}
 			}				
 		}else{

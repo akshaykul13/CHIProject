@@ -1,3 +1,8 @@
+@import 'http://fonts.googleapis.com/css?family=Montserrat:300,400,700';
+body {
+	font-family: Montserrat, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
 input {
 	font-size: 18px;
 	line-height: 22px;	
@@ -5,6 +10,41 @@ input {
 
 #submit {
 	margin-left: 20px;
+}
+
+#questionArea {
+  background-repeat: no-repeat;
+  width: 90%;
+  margin-left: 5%;
+  overflow-y: scroll;
+  border: 1px solid black;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+#questionText{
+	margin-left: 10px;
+}
+
+#next_link{
+	display: block;
+	float: right;
+	font-weight: bold;
+	font-size: 18px;	
+}
+
+#submit_link{
+	display: block;
+	float:left;
+	font-weight: bold;
+	font-size: 18px;	
+}
+
+#start_button {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 #questionHolder {
@@ -33,6 +73,11 @@ margin: 15px;
 	margin-top: 20px; 
 }
 
+#params {
+	font-size: 14px;
+	margin-top: 40px;
+}
+
 #next {
     float: right;
     text-align: right;
@@ -54,4 +99,55 @@ margin: 15px;
     margin-top: 10px;
     margin-bottom: 20px;
     padding-bottom: 20px;
+}
+
+.header-wrapper {
+	position: relative;
+	height: 65px;	
+	z-index: 15;
+	font-size: 15px;
+	text-transform: uppercase;	
+	background: black;	
+	background: rgba(73, 73, 73, 0.8);
+	transition:background 0.5s ease ;
+	-webkit-transition:background 0.5s ease ;
+	top: 0;
+	left: 0;
+}
+.nav { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; list-style: none;}
+
+.header {
+	margin: 0 auto;
+	width: 2000px;
+	overflow: hidden;
+	height: 65px;
+}
+.header a.logo {
+	float: left;
+	margin: 16px 0 0 0;
+	width: 230px;
+}
+.header ul {
+	float: right;
+	position: absolute;
+	right: 0;
+}
+.header ul li {
+	float: left;
+	display: block;
+	font-family: Montserrat, sans-serif;
+	font-size: 20px;
+}
+.header ul li:first-child {
+	margin: 0
+}
+.header ul li a {
+	color: #FFF;
+	height: 65px;
+	display: block;
+	padding: 20px 20px 0 ;
+}
+.header ul li a:hover {
+	color: #FFF;
+	background: #DCA459;
 }
