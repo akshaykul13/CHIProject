@@ -62,7 +62,7 @@ $(document).ready(function(){
 			success: function(data) 
                         {
                                 
-                                console.log(data);
+                                //console.log(data);
                                 loc = JSON.parse(data).location;
                                 if(JSON.parse(data).company)
                                         desc += JSON.parse(data).company + " ";

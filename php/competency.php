@@ -7,6 +7,7 @@ require 'connect.php';
 	$alreadyDisplayedQuestions = $json->{'alreadyDisplayedQuestions'};
 	$question_type = $json->{'question_type'};
 	$difficulty = $json->{'difficulty'};
+        error_log($difficulty);
 	$exclusionList = "";		
 	foreach ($alreadyDisplayedQuestions as $value){		
 		$exclusionList = $exclusionList.$value.",";
